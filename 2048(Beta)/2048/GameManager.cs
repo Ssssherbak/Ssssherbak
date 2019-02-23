@@ -4,8 +4,10 @@ namespace _2048
 {
     public class GameManager
     {
+        
         private readonly Random _random;
-
+        
+        //хранит публичные данные
         public int Size { get; private set; }
         public int StartTileCount { get; private set; }
         public Grid Grid { get; private set; }
@@ -19,7 +21,7 @@ namespace _2048
             Size = size;
             StartTileCount = startTileCount;
         }
-
+        //запуск игры при нажатии кнопки старт
         public void Start()
         {
             Grid = new Grid(Size);
@@ -28,7 +30,8 @@ namespace _2048
             if (GridModified != null)
                 GridModified(this, new EventArgs());
         }
-
+        
+        //
         public void Test(params int[] cells)
         {
             Grid = new Grid(Size);
@@ -40,6 +43,7 @@ namespace _2048
             }
         }
 
+        //поведение кнопок управления
         public bool Move(Directions direction)
         {
             bool moved = false;
@@ -58,7 +62,7 @@ namespace _2048
                     moved = Grid.MoveLeft();
                     break;
             }
-            if (moved)
+            if (moved)  //
             {
                 Moves++;
                 bool tileAdded = Grid.AddRandomTile();
@@ -69,6 +73,7 @@ namespace _2048
             return true;
         }
 
+        // цикл, бегающий в массиве цифр
         private void AddStartTiles()
         {
             for (int i = 0; i < StartTileCount; i++)
